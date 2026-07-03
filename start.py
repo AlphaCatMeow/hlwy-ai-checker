@@ -97,7 +97,7 @@ class ProxyHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         """处理 POST 请求 - 代理 API 调用"""
         # 代理所有 OpenAI 和 Anthropic API 请求
-        if '/chat/completions' in self.path or '/messages' in self.path:
+        if '/chat/completions' in self.path or '/messages' in self.path or '/responses' in self.path:
             self.proxy_api_request()
         else:
             self.send_error(404, "Endpoint not found")
@@ -138,9 +138,13 @@ class ProxyHandler(BaseHTTPRequestHandler):
 
             # 确定目标 URL
             if '/chat/completions' in self.path:
-                # OpenAI API
+                # OpenAI Chat Completions API
                 base_url = self.headers.get('X-Target-Base-URL', 'https://api.openai.com/v1')
                 target_url = f"{base_url.rstrip('/')}/chat/completions"
+            elif '/responses' in self.path:
+                # OpenAI Responses API
+                base_url = self.headers.get('X-Target-Base-URL', 'https://api.openai.com/v1')
+                target_url = f"{base_url.rstrip('/')}/responses"
             elif '/messages' in self.path:
                 # Anthropic API
                 base_url = self.headers.get('X-Target-Base-URL', 'https://api.anthropic.com/v1')
@@ -171,6 +175,9 @@ class ProxyHandler(BaseHTTPRequestHandler):
                 val = self.headers.get(src_key)
                 if val:
                     headers[dst_key] = val
+
+            # 移除 accept-encoding 避免收到压缩响应后原样转发导致浏览器解析失败
+            headers.pop('accept-encoding', None)
 
             # 使用 requests 发送请求 (保留原始 header 大小写)
             try:
@@ -228,7 +235,7 @@ def main():
     url = f'http://{HOST}:{PORT}'
     print(f"""
 ╔════════════════════════════════════════════════════════╗
-║      hlwy-ai-checker v2.2.0 - AI模型识别器               ║
+║      hlwy-ai-checker v2.2.1 - AI模型识别器               ║
 ╚════════════════════════════════════════════════════════╝
 本项目github地址：https://github.com/hanlinwenyuan/hlwy-ai-checker
 
