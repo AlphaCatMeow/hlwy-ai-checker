@@ -673,6 +673,189 @@
             padding-bottom: 8px;
             border-bottom: 2px solid #e0e0e0;
         }
+
+        /* ===== 一键鉴别 样式 ===== */
+        .quick-hero {
+            background: linear-gradient(135deg, #f5f7ff 0%, #f3f0ff 100%);
+            border: 2px solid #dfe3ff;
+            border-radius: 14px;
+            padding: 20px 22px;
+            margin-bottom: 22px;
+        }
+
+        .quick-hero h2 {
+            color: #4a3f9f;
+            margin-bottom: 8px;
+        }
+
+        .quick-hero .quick-steps {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.9;
+        }
+
+        .quick-hero .quick-steps b {
+            color: #667eea;
+        }
+
+        .quick-model-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .quick-model-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .btn-refresh {
+            padding: 12px 18px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95em;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .btn-refresh:hover { background: #5a6268; }
+        .btn-refresh:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .quick-source-hint {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 6px;
+            min-height: 1.2em;
+        }
+
+        .quick-source-hint.err { color: #c0392b; }
+
+        .btn-quick {
+            padding: 18px 40px;
+            font-size: 1.25em;
+            width: 100%;
+        }
+
+        .advanced-toggle {
+            display: inline-block;
+            margin: 18px 0 4px;
+            color: #667eea;
+            cursor: pointer;
+            font-size: 0.92em;
+            user-select: none;
+        }
+
+        .advanced-toggle:hover { text-decoration: underline; }
+
+        .advanced-panel {
+            display: none;
+            padding: 18px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .advanced-panel.show { display: block; }
+
+        /* 单模型鉴别结果 */
+        .quick-verdict-card {
+            text-align: center;
+            padding: 28px 20px;
+            border-radius: 14px;
+            margin-bottom: 18px;
+        }
+
+        .quick-verdict-card.verdict-good { background: linear-gradient(135deg, #e8f8ed 0%, #d4edda 100%); border: 2px solid #a3d9b1; }
+        .quick-verdict-card.verdict-warn { background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%); border: 2px solid #f0d68a; }
+        .quick-verdict-card.verdict-bad  { background: linear-gradient(135deg, #fdecee 0%, #f8d7da 100%); border: 2px solid #eda7ae; }
+
+        .quick-verdict-card .qv-score {
+            font-size: 3.4em;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .quick-verdict-card.verdict-good .qv-score { color: #1e7e34; }
+        .quick-verdict-card.verdict-warn .qv-score { color: #a07800; }
+        .quick-verdict-card.verdict-bad  .qv-score { color: #b02a37; }
+
+        .quick-verdict-card .qv-label {
+            color: #666;
+            font-size: 0.95em;
+            margin-top: 2px;
+        }
+
+        .quick-verdict-card .qv-text {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 8px 22px;
+            border-radius: 20px;
+            font-size: 1.15em;
+            font-weight: 700;
+            background: rgba(255,255,255,0.75);
+        }
+
+        .quick-verdict-card.verdict-good .qv-text { color: #155724; }
+        .quick-verdict-card.verdict-warn .qv-text { color: #856404; }
+        .quick-verdict-card.verdict-bad  .qv-text { color: #721c24; }
+
+        .quick-verdict-card .qv-desc {
+            margin-top: 12px;
+            color: #555;
+            font-size: 0.93em;
+            line-height: 1.6;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quick-meta {
+            background: white;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 14px;
+            font-size: 0.93em;
+            color: #555;
+            line-height: 1.9;
+            border-left: 4px solid #667eea;
+        }
+
+        .quick-meta b { color: #333; }
+
+        .quick-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .quick-metric {
+            background: white;
+            border-radius: 10px;
+            padding: 16px 14px;
+            text-align: center;
+            border: 1px solid #eaeaea;
+        }
+
+        .quick-metric .qm-name {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 6px;
+        }
+
+        .quick-metric .qm-value {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #4a3f9f;
+        }
+
+        .quick-metric .qm-sub {
+            font-size: 0.8em;
+            color: #999;
+            margin-top: 4px;
+        }
     </style>
 </head>
 <body>
@@ -722,19 +905,135 @@
         <div class="header">
             <h1>🎯 AI模型识别器</h1>
             <p>通过随机数生成模式识别和区分不同的AI模型</p>
-            <p style="font-size: 0.85em; opacity: 0.7; margin-top: 5px;">v2.3.0</p>
+            <p style="font-size: 0.85em; opacity: 0.7; margin-top: 5px;">v2.4.0</p>
         </div>
 
         <div class="content">
             <div class="tabs">
-                <button class="tab active" onclick="switchTab('calibrate')">📊 标定基准</button>
-                <button class="tab" onclick="switchTab('test')">🔍 测试识别</button>
-                <button class="tab" onclick="switchTab('baselines')">💾 基准管理</button>
-                <button class="tab" onclick="switchTab('compare')">🏆 大横评</button>
+                <button class="tab active" data-tab="quick" onclick="switchTab('quick')">⚡ 一键鉴别</button>
+                <button class="tab" data-tab="calibrate" onclick="switchTab('calibrate')">📊 标定基准</button>
+                <button class="tab" data-tab="test" onclick="switchTab('test')">🔍 测试识别</button>
+                <button class="tab" data-tab="baselines" onclick="switchTab('baselines')">💾 基准管理</button>
+                <button class="tab" data-tab="compare" onclick="switchTab('compare')">🏆 大横评</button>
+            </div>
+
+            <!-- 一键鉴别 Tab -->
+            <div id="quick" class="tab-content active">
+                <div class="quick-hero">
+                    <h2>⚡ 一键鉴别</h2>
+                    <div class="quick-steps">
+                        无需自己标定基准 —— 官方基准会自动从 GitHub 下载。<br>
+                        <b>①</b> 选择你要鉴别的模型 &nbsp;→&nbsp;
+                        <b>②</b> 填入渠道的 Base URL 和 API Key &nbsp;→&nbsp;
+                        <b>③</b> 点击「开始一键鉴别」
+                    </div>
+                </div>
+
+                <div class="quick-model-row">
+                    <div class="form-group">
+                        <label>① 选择模型（官方基准库）</label>
+                        <select id="quick-model-select" onchange="onQuickModelChange()">
+                            <option value="">正在加载模型列表…</option>
+                        </select>
+                    </div>
+                    <button class="btn-refresh" id="quick-refresh-btn" onclick="loadQuickModels(true)">🔄 刷新</button>
+                </div>
+                <div class="quick-source-hint" id="quick-source-hint"></div>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <label>② API 类型</label>
+                    <select id="quick-api-type" onchange="updateQuickApiFields()">
+                        <option value="openai">OpenAI 兼容格式（最常见，中转站基本都是这个）</option>
+                        <option value="openai-responses">OpenAI Responses API</option>
+                        <option value="anthropic">Anthropic Claude API</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Base URL</label>
+                        <input type="text" id="quick-base-url" placeholder="https://api.openai.com/v1">
+                    </div>
+                    <div class="form-group">
+                        <label>API Key</label>
+                        <input type="password" id="quick-api-key" placeholder="sk-...">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>渠道上的模型名称（默认与所选模型相同，如渠道命名不同请修改）</label>
+                    <input type="text" id="quick-model-name" placeholder="留空则使用所选模型的名称">
+                </div>
+
+                <span class="advanced-toggle" onclick="toggleQuickAdvanced()" id="quick-advanced-toggle">⚙️ 高级选项（一般不用改）▼</span>
+                <div class="advanced-panel" id="quick-advanced-panel">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>测试次数 (50-500)</label>
+                            <input type="number" id="quick-iterations" value="100" min="50" max="500">
+                        </div>
+                        <div class="form-group">
+                            <label>并发数 (1-50)</label>
+                            <input type="number" id="quick-concurrency" value="5" min="1" max="50">
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label>请求头伪装</label>
+                        <select id="quick-header-preset">
+                            <option value="default">默认</option>
+                            <option value="claude-code">Claude Code</option>
+                            <option value="codex">Codex CLI</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="btn-group" style="margin-top: 20px;">
+                    <button class="btn btn-quick" onclick="startQuickCheck()" id="quick-btn">⚡ 开始一键鉴别</button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-stop" id="quick-stop-btn" onclick="abortQuickCheck()" style="display: none; margin-left: 0; margin-top: 12px;">⏹ 中止</button>
+                </div>
+
+                <div class="progress-bar" id="quick-progress-bar">
+                    <div class="progress-fill" id="quick-progress-fill">0%</div>
+                </div>
+
+                <div class="status" id="quick-status"></div>
+
+                <!-- 错误日志面板 -->
+                <div class="error-log" id="quick-error-log">
+                    <div class="error-log-header" onclick="toggleErrorDetails('quick')">
+                        <span class="error-icon">⚠️</span>
+                        <span class="error-summary" id="quick-error-summary">发生了一些错误</span>
+                        <span class="error-toggle-arrow" id="quick-error-arrow">▼</span>
+                    </div>
+                    <div class="error-details" id="quick-error-details">
+                        <ul id="quick-error-list"></ul>
+                    </div>
+                </div>
+
+                <!-- 连续失败大警告 -->
+                <div class="early-fail-warning" id="quick-early-warning">
+                    <div class="warn-title">🚨 连续请求失败</div>
+                    <div class="warn-body" id="quick-early-warning-body"></div>
+                    <div class="warn-suggestion" id="quick-early-warning-suggestion"></div>
+                </div>
+
+                <div class="result-card" id="quick-results" style="display: none;">
+                    <h3>鉴别报告</h3>
+                    <div id="quick-report"></div>
+                </div>
+
+                <div class="chart-container" id="quick-chart-container" style="display: none;">
+                    <h3>分布对比</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="quick-chart"></canvas>
+                    </div>
+                </div>
             </div>
 
             <!-- 标定基准 Tab -->
-            <div id="calibrate" class="tab-content active">
+            <div id="calibrate" class="tab-content">
                 <h2>标定新模型基准</h2>
                 <p style="color: #666; margin-bottom: 20px;">配置API并运行测试，建立模型的随机数分布基准</p>
 
@@ -999,16 +1298,25 @@
         let calibRunning = false;
         let testRunning  = false;
 
+        // 一键鉴别状态
+        let quickModels       = [];      // GitHub baselines 目录下的模型列表
+        let quickRunning      = false;
+        let currentQuickChart = null;
+        let quickModelTouched = false;   // 用户是否手改过「模型名称」
+
         /* ========================================
          *  UI 辅助
          * ======================================== */
         function switchTab(tabName) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            event.target.classList.add('active');
+            const btn = (typeof event !== 'undefined' && event && event.target)
+                      || document.querySelector(`.tab[data-tab="${tabName}"]`);
+            if (btn) btn.classList.add('active');
             document.getElementById(tabName).classList.add('active');
             if (tabName === 'baselines') renderBaselines();
             if (tabName === 'compare') refreshBaselineSelect();
+            if (tabName === 'quick' && quickModels.length === 0) loadQuickModels();
         }
 
         function updateCalibApiFields() {
@@ -1144,7 +1452,8 @@
         // 每个面板的错误计数器
         const errorState = {
             calib: { count: 0, consecutive: 0, maxConsecutive: 0, list: [], shownWarning: false },
-            test:  { count: 0, consecutive: 0, maxConsecutive: 0, list: [], shownWarning: false }
+            test:  { count: 0, consecutive: 0, maxConsecutive: 0, list: [], shownWarning: false },
+            quick: { count: 0, consecutive: 0, maxConsecutive: 0, list: [], shownWarning: false }
         };
 
         function resetErrorState(prefix) {
@@ -1225,6 +1534,9 @@
         }
         function abortTest() {
             testRunning = false;
+        }
+        function abortQuickCheck() {
+            quickRunning = false;
         }
 
         /* ========================================
@@ -2250,11 +2562,350 @@
         }
 
         /* ========================================
+         *  一键鉴别（自动下载官方基准 + 单模型报告）
+         * ======================================== */
+        function escapeHtml(str) {
+            return String(str == null ? '' : str).replace(/[&<>"']/g, c => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            })[c]);
+        }
+
+        function updateQuickApiFields() {
+            const type = document.getElementById('quick-api-type').value;
+            document.getElementById('quick-base-url').placeholder =
+                type === 'anthropic' ? 'https://api.anthropic.com' : 'https://api.openai.com/v1';
+        }
+
+        function toggleQuickAdvanced() {
+            const panel  = document.getElementById('quick-advanced-panel');
+            const toggle = document.getElementById('quick-advanced-toggle');
+            const open   = panel.classList.toggle('show');
+            toggle.textContent = open ? '⚙️ 高级选项（一般不用改）▲' : '⚙️ 高级选项（一般不用改）▼';
+        }
+
+        /* 从后端拉取 GitHub baselines 目录中的模型列表 */
+        async function loadQuickModels(force = false) {
+            const sel     = document.getElementById('quick-model-select');
+            const hint    = document.getElementById('quick-source-hint');
+            const refresh = document.getElementById('quick-refresh-btn');
+
+            refresh.disabled = true;
+            hint.className = 'quick-source-hint';
+            hint.textContent = '正在从 GitHub 获取官方基准列表…';
+            const prevValue = sel.value;
+            sel.innerHTML = '<option value="">正在加载模型列表…</option>';
+
+            try {
+                const resp = await fetch('/api/baselines' + (force ? '?refresh=1' : ''));
+                const data = await resp.json();
+                if (!resp.ok) throw new Error(data.detail || data.error || `HTTP ${resp.status}`);
+
+                quickModels = Array.isArray(data.models) ? data.models : [];
+                if (quickModels.length === 0) {
+                    sel.innerHTML = '<option value="">（基准库暂无模型）</option>';
+                    hint.className = 'quick-source-hint err';
+                    hint.textContent = '官方基准库中暂时没有可用模型。';
+                    return;
+                }
+
+                sel.innerHTML = '';
+                quickModels.forEach(m => {
+                    const opt = document.createElement('option');
+                    opt.value = m.id;
+                    opt.textContent = m.id;
+                    sel.appendChild(opt);
+                });
+                // 尽量保留用户此前的选择
+                if (prevValue && quickModels.some(m => m.id === prevValue)) sel.value = prevValue;
+
+                hint.className = 'quick-source-hint';
+                hint.textContent = `✅ 共 ${quickModels.length} 个官方基准模型（来源：${data.source}｜仓库：${data.repo}）`;
+                onQuickModelChange();
+            } catch (err) {
+                sel.innerHTML = '<option value="">加载失败，请点击「刷新」重试</option>';
+                hint.className = 'quick-source-hint err';
+                hint.textContent = `❌ 获取列表失败：${err.message}。请检查网络能否访问 GitHub，然后点「🔄 刷新」重试。`;
+            } finally {
+                refresh.disabled = false;
+            }
+        }
+
+        /* 选择模型后自动填入模型名称（用户手改过则不覆盖） */
+        function onQuickModelChange() {
+            const id    = document.getElementById('quick-model-select').value;
+            const input = document.getElementById('quick-model-name');
+            input.placeholder = id ? `留空则使用「${id}」` : '留空则使用所选模型的名称';
+            if (!quickModelTouched) input.value = id;
+        }
+
+        /* 校验并规范化下载到的基准 */
+        function normalizeDownloadedBaseline(raw) {
+            let b = raw;
+            if (Array.isArray(b)) {
+                if (b.length === 0) throw new Error('基准文件内容为空');
+                b = b[0];
+            }
+            if (!b || typeof b !== 'object') throw new Error('基准文件格式无法识别');
+            if (!Array.isArray(b.distribution) || b.distribution.length !== 355) {
+                throw new Error('基准缺少完整的分布数据（应为 355 个数值）');
+            }
+            if (!b.stats || typeof b.stats.mean !== 'number') {
+                throw new Error('基准缺少统计数据');
+            }
+            if (b.stats.mode == null) {
+                throw new Error('该官方基准为旧版格式，缺少众数数据，无法用于鉴别');
+            }
+            return b;
+        }
+
+        async function startQuickCheck() {
+            const modelId      = document.getElementById('quick-model-select').value;
+            const apiType      = document.getElementById('quick-api-type').value;
+            const baseUrl      = document.getElementById('quick-base-url').value.trim();
+            const apiKey       = document.getElementById('quick-api-key').value.trim();
+            const iterations   = Math.max(50, Math.min(500, parseInt(document.getElementById('quick-iterations').value) || 100));
+            const concurrency  = Math.max(1, Math.min(50, parseInt(document.getElementById('quick-concurrency').value) || 5));
+            const headerPreset = document.getElementById('quick-header-preset').value;
+
+            if (!modelId) {
+                showStatus('quick-status', '请先在上方选择要鉴别的模型（若列表为空，请点「🔄 刷新」）', 'error');
+                return;
+            }
+            if (!baseUrl || !apiKey) {
+                showStatus('quick-status', '请填写 Base URL 和 API Key', 'error');
+                return;
+            }
+
+            const btn     = document.getElementById('quick-btn');
+            const stopBtn = document.getElementById('quick-stop-btn');
+            btn.disabled = true;
+            btn.textContent = '鉴别中...';
+            resetErrorState('quick');
+            hideStatus('quick-status');
+            document.getElementById('quick-results').style.display = 'none';
+            document.getElementById('quick-chart-container').style.display = 'none';
+            document.getElementById('quick-progress-bar').classList.remove('show');
+
+            // ---- 步骤 1：下载官方基准 ----
+            let baseline, baselineSource;
+            showStatus('quick-status', `正在下载「${modelId}」的官方基准…`, 'info');
+            try {
+                const resp = await fetch(`/api/baseline?name=${encodeURIComponent(modelId)}`);
+                const payload = await resp.json();
+                if (!resp.ok) throw new Error(payload.detail || payload.error || `HTTP ${resp.status}`);
+                baseline = normalizeDownloadedBaseline(payload.data);
+                baselineSource = payload.source || 'GitHub';
+            } catch (err) {
+                showStatus('quick-status', `❌ 下载官方基准失败：${err.message}`, 'error');
+                btn.disabled = false;
+                btn.textContent = '⚡ 开始一键鉴别';
+                return;
+            }
+
+            const model = document.getElementById('quick-model-name').value.trim() || baseline.model || modelId;
+
+            // ---- 步骤 2：测试待鉴别渠道 ----
+            stopBtn.style.display = 'inline-block';
+            quickRunning = true;
+
+            const results = [];
+            let successCount = 0;
+            let errorCount   = 0;
+
+            await runWithConcurrency(
+                iterations,
+                concurrency,
+                () => quickRunning,
+                async () => {
+                    if (!quickRunning) return false;
+                    try {
+                        const num = await getRandomNumber(apiType, baseUrl, apiKey, model, headerPreset);
+                        if (num !== null) {
+                            results.push(num);
+                            successCount++;
+                            clearConsecutiveErrors('quick');
+                        } else {
+                            errorCount++;
+                            addError('quick', new Error('返回内容无法解析为 1-355 的数字'));
+                        }
+                    } catch (error) {
+                        errorCount++;
+                        addError('quick', error);
+                        console.error('请求错误:', error);
+                    }
+                },
+                (completed, total) => {
+                    updateProgress('quick-progress-bar', 'quick-progress-fill', (completed / total) * 100);
+                    showStatus('quick-status', `进度: ${successCount} 成功 / ${errorCount} 失败 / ${total} 总数（并发: ${concurrency}）`, 'info');
+                }
+            );
+
+            const aborted = !quickRunning;
+            quickRunning = false;
+            stopBtn.style.display = 'none';
+            btn.disabled = false;
+            btn.textContent = '⚡ 开始一键鉴别';
+
+            if (results.length < 40) {
+                showStatus('quick-status',
+                    aborted
+                        ? `⏹ 已中止：仅获得 ${results.length} 个有效数据（至少需要 40 个），无法出报告。`
+                        : `❌ 鉴别失败：仅获得 ${results.length} 个有效数据（至少需要 40 个）。请检查 Base URL、API Key 和模型名称是否正确。`,
+                    'error');
+                return;
+            }
+
+            // ---- 步骤 3：只针对本模型出报告 ----
+            const distribution = calculateDistribution(results);
+            const stats        = calculateStats(results);
+            const similarity   = calculateSimilarity(distribution, baseline.distribution, stats, baseline.stats);
+
+            displayQuickResult({
+                modelId, model, baseline, baselineSource, similarity, stats,
+                distribution, iterations, successCount, errorCount, aborted
+            });
+
+            if (aborted) {
+                showStatus('quick-status', `⏹ 已中止，但已用 ${results.length} 个有效样本生成报告。成功: ${successCount}, 失败: ${errorCount}`, 'info');
+            } else if (errorCount > 0) {
+                showStatus('quick-status', `✅ 鉴别完成！成功: ${successCount}, 失败: ${errorCount}（报告基于成功的数据）`, 'success');
+            } else {
+                showStatus('quick-status', `✅ 鉴别完成！${successCount} 次请求全部成功`, 'success');
+            }
+        }
+
+        /* 单模型鉴别报告 —— 不做多模型排名 */
+        function displayQuickResult(r) {
+            const container = document.getElementById('quick-report');
+            document.getElementById('quick-results').style.display = 'block';
+
+            const score   = r.similarity.overallScore;
+            const verdict = getPurityVerdict(score);
+
+            const descMap = {
+                'verdict-good': '本次测试的随机数分布与官方基准高度一致，未发现被替换或明显降智的迹象。',
+                'verdict-warn': '分布与官方基准大体吻合，但存在一定偏差。可能只是采样波动，也可能存在轻微降智（如量化、参数被改动）。建议把测试次数调高后复测。',
+                'verdict-bad':  '分布与官方基准差异明显。该渠道可能并非其声称的模型，或存在明显降智。建议结合其他方法交叉验证后再下结论。'
+            };
+
+            const modeMatch   = r.stats.mode === r.baseline.stats.mode;
+            const sampleCount = r.successCount;
+            const baseModePct = r.baseline.stats.modeCount != null && r.baseline.iterations
+                ? (r.baseline.stats.modeCount / r.baseline.iterations * 100).toFixed(0) + '%'
+                : '—';
+            const testModePctStr = r.stats.modeCount != null && sampleCount
+                ? (r.stats.modeCount / sampleCount * 100).toFixed(0) + '%'
+                : '—';
+
+            const baseTime = r.baseline.timestamp
+                ? new Date(r.baseline.timestamp).toLocaleDateString('zh-CN')
+                : '未知';
+
+            let html = `
+                <div class="quick-verdict-card ${verdict.className}">
+                    <div class="qv-score">${(score * 100).toFixed(2)}%</div>
+                    <div class="qv-label">与官方基准「${escapeHtml(r.modelId)}」的综合匹配度</div>
+                    <div class="qv-text">${escapeHtml(verdict.text)}</div>
+                    <div class="qv-desc">${descMap[verdict.className]}</div>
+                </div>
+
+                <div class="quick-meta">
+                    <b>鉴别对象：</b>${escapeHtml(r.modelId)}
+                        （渠道上的模型名：<code>${escapeHtml(r.model)}</code>）<br>
+                    <b>官方基准：</b>${r.baseline.iterations || '?'} 个样本，标定于 ${baseTime}（来源：${escapeHtml(r.baselineSource)}）<br>
+                    <b>本次测试：</b>${sampleCount} 个有效样本 / 共 ${r.iterations} 次请求${r.errorCount > 0 ? `（${r.errorCount} 次失败）` : ''}<br>
+                    <b>本次统计：</b>众数 ${r.stats.mode}，均值 ${r.stats.mean.toFixed(2)}，标准差 ${r.stats.stdDev.toFixed(2)}，唯一值 ${r.stats.unique} 个
+                </div>
+
+                <div class="quick-metrics">
+                    <div class="quick-metric">
+                        <div class="qm-name">众数匹配</div>
+                        <div class="qm-value">${modeMatch ? '✅ 一致' : '❌ 不一致'}</div>
+                        <div class="qm-sub">本次 ${r.stats.mode} ／ 基准 ${r.baseline.stats.mode}</div>
+                    </div>
+                    <div class="quick-metric">
+                        <div class="qm-name">众数占比</div>
+                        <div class="qm-value">${testModePctStr}</div>
+                        <div class="qm-sub">基准 ${baseModePct}</div>
+                    </div>
+                    <div class="quick-metric">
+                        <div class="qm-name">余弦相似度</div>
+                        <div class="qm-value">${(r.similarity.cosineSimilarity * 100).toFixed(2)}%</div>
+                        <div class="qm-sub">越高越像</div>
+                    </div>
+                    <div class="quick-metric">
+                        <div class="qm-name">JS 散度</div>
+                        <div class="qm-value">${r.similarity.jsDivergence.toFixed(4)}</div>
+                        <div class="qm-sub">越低越像</div>
+                    </div>
+                </div>`;
+
+            if (sampleCount < 100) {
+                html += `<div class="quick-meta" style="border-left-color:#ffb74d;margin-top:14px;">
+                    ⚠️ 本次仅有 <b>${sampleCount}</b> 个有效样本，统计波动较大，结论仅供参考。建议在「高级选项」中把测试次数调到 200 以上再复测。
+                </div>`;
+            }
+
+            html += `<div class="quick-meta" style="border-left-color:#bbb;margin-top:14px;font-size:0.88em;color:#777;">
+                💡 本结论基于随机数分布的统计推断，不是绝对证据。若结果异常，建议多测几次或换个时间段复测，也可到「🔍 测试识别」「🏆 大横评」做更细致的对比。
+            </div>`;
+
+            container.innerHTML = html;
+
+            displayQuickChart(r.distribution, r.baseline.distribution, r.model, r.modelId);
+        }
+
+        function displayQuickChart(testDist, baselineDist, testName, baselineName) {
+            const container = document.getElementById('quick-chart-container');
+            container.style.display = 'block';
+            if (currentQuickChart) { currentQuickChart.destroy(); currentQuickChart = null; }
+
+            const canvas = resetCanvas('quick-chart');
+            const ctx = canvas.getContext('2d');
+            const bucketSize = 10;
+            const buckets = Math.ceil(355 / bucketSize);
+            const testBuckets     = new Array(buckets).fill(0);
+            const baselineBuckets = new Array(buckets).fill(0);
+            testDist.forEach((val, idx) => { testBuckets[Math.floor(idx / bucketSize)] += val; });
+            baselineDist.forEach((val, idx) => { baselineBuckets[Math.floor(idx / bucketSize)] += val; });
+            const labels = [];
+            for (let i = 0; i < buckets; i++) labels.push(`${i * bucketSize + 1}-${Math.min((i + 1) * bucketSize, 355)}`);
+
+            currentQuickChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: `本次测试: ${testName}`, data: testBuckets, backgroundColor: 'rgba(102, 126, 234, 0.6)', borderColor: 'rgba(102, 126, 234, 1)', borderWidth: 1 },
+                        { label: `官方基准: ${baselineName}`, data: baselineBuckets, backgroundColor: 'rgba(118, 75, 162, 0.6)', borderColor: 'rgba(118, 75, 162, 1)', borderWidth: 1 }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: '频率' } },
+                        x: { title: { display: true, text: '数字范围' }, ticks: { maxRotation: 45, minRotation: 0, autoSkip: true, maxTicksLimit: 20 } }
+                    },
+                    plugins: { legend: { position: 'top' } }
+                }
+            });
+        }
+
+        /* ========================================
          *  初始化
          * ======================================== */
         window.addEventListener('DOMContentLoaded', () => {
             console.log('AI模型识别器已加载');
             console.log(`当前已保存 ${baselines.length} 个基准模型`);
+
+            // 记录用户是否手动改过「渠道上的模型名称」
+            const quickModelInput = document.getElementById('quick-model-name');
+            quickModelInput.addEventListener('input', () => {
+                quickModelTouched = quickModelInput.value.trim() !== '';
+            });
+
+            // 默认页面：自动加载官方基准列表
+            loadQuickModels();
         });
     </script>
 </body>
