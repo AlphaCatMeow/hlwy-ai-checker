@@ -24,6 +24,11 @@
 
 去releases下载最新稳定版的zip文件，解压， 然后找到start.py，用python打开。
 
+## 0.可以直接使用一键测试功能了。
+
+<img width="896" height="688" alt="image" src="https://github.com/user-attachments/assets/1dc60c3d-279b-4c99-bf9f-3e0da3b91a46" />
+
+
 ## 1.输入官key进行模型标定（带/v1）
 
 <img width="1354" height="852" alt="图片" src="https://github.com/user-attachments/assets/67ff8592-dcf3-407c-9e12-57991447d016" />
