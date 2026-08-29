@@ -4,6 +4,44 @@ AI模型识别器后端代理服务器
 解决浏览器 CORS 限制，代理所有 API 请求
 """
 
+import importlib.util
+import subprocess
+import sys
+
+
+def _ensure_dependencies():
+    """自动检查并安装第三方依赖。
+
+    项目仅依赖 requests。若运行环境未安装，则尝试通过 pip 自动安装，
+    默认源失败时回退到清华 PyPI 镜像，避免用户手动处理依赖。
+    """
+    if importlib.util.find_spec("requests") is not None:
+        return
+
+    print("[依赖检查] 未检测到 requests，正在自动安装 ...")
+    requirement = "requests>=2.34.2"
+    base_cmd = [sys.executable, "-m", "pip", "install", requirement]
+    mirrors = (
+        ([], "默认源"),
+        (["-i", "https://pypi.tuna.tsinghua.edu.cn/simple"], "清华镜像"),
+    )
+    for extra, name in mirrors:
+        try:
+            subprocess.check_call(base_cmd + extra)
+            print("[依赖检查] requests 安装完成。")
+            return
+        except Exception as e:
+            if name == "默认源":
+                print(f"[依赖检查] {name}安装失败（{e}），改用清华镜像重试 ...")
+            else:
+                print(f"[依赖检查] 自动安装失败：{e}")
+
+    print("[依赖检查] 请手动执行：pip install requests")
+    sys.exit(1)
+
+
+_ensure_dependencies()
+
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from socketserver import ThreadingMixIn
 from urllib.parse import urlparse, parse_qs
