@@ -375,12 +375,7 @@ class ProxyHandler(BaseHTTPRequestHandler):
 
             # 使用 requests 发送请求 (保留原始 header 大小写)
             try:
-                resp = _session.post(
-                    target_url,
-                    data=body,
-                    headers=headers,
-                    timeout=30,
-                )
+                resp = self._post_adaptive(target_url, body, headers)
 
                 self.send_response(resp.status_code)
                 self.send_header('Content-Type', 'application/json')
@@ -395,6 +390,46 @@ class ProxyHandler(BaseHTTPRequestHandler):
 
         except Exception as e:
             self.send_json_response(500, {'error': f'服务器错误: {str(e)}'})
+
+    def _post_adaptive(self, target_url, body, headers):
+        """发送 POST，遇到 max_tokens / max_completion_tokens 参数不兼容时自动切换重试。
+
+        新版模型（gpt-5 / o 系列等）只接受 max_completion_tokens，而旧模型/部分中转
+        只接受 max_tokens，前端写死 max_tokens 会导致 400。这里根据报错自动降级切换。
+        """
+        resp = _session.post(target_url, data=body, headers=headers, timeout=30)
+        if resp.status_code != 400 or '/chat/completions' not in self.path:
+            return resp
+
+        try:
+            err_text = resp.text.lower()
+        except Exception:
+            return resp
+
+        # 仅当报错确实指向这两个参数时才处理，避免误伤其他 400 错误
+        if 'max_tokens' not in err_text and 'max_completion_tokens' not in err_text:
+            return resp
+        if 'unsupported_parameter' not in err_text and 'unknown parameter' not in err_text:
+            return resp
+
+        try:
+            body_obj = json.loads(body)
+        except Exception:
+            return resp
+        if not isinstance(body_obj, dict):
+            return resp
+
+        changed = False
+        if 'max_tokens' in body_obj and 'max_completion_tokens' in err_text:
+            body_obj['max_completion_tokens'] = body_obj.pop('max_tokens')
+            changed = True
+        elif 'max_completion_tokens' in body_obj and 'max_tokens' in err_text:
+            body_obj['max_tokens'] = body_obj.pop('max_completion_tokens')
+            changed = True
+
+        if not changed:
+            return resp
+        return _session.post(target_url, data=json.dumps(body_obj), headers=headers, timeout=30)
 
     def send_json_response(self, status_code, data):
         """发送 JSON 响应"""
