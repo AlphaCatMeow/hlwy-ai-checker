@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AI模型识别器后端代理服务器
+hlwy-ai-checker AI 模型鉴别器后端代理服务器
 解决浏览器 CORS 限制，代理所有 API 请求
 """
 
@@ -502,7 +502,7 @@ def main():
     url = f'http://{HOST}:{PORT}'
     print(f"""
 ╔════════════════════════════════════════════════════════╗
-║      hlwy-ai-checker v2.4.0 - AI模型识别器               ║
+║      hlwy-ai-checker v2.5-pre1 - AI 模型鉴别器         ║
 ╚════════════════════════════════════════════════════════╝
 本项目github地址：https://github.com/hanlinwenyuan/hlwy-ai-checker
 
