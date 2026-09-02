@@ -1,10 +1,11 @@
 # hlwy-ai-checker
-检查第三方 AI API是否掺假以及渠道一致性
-完全本地运行 助力隐私保护
+**检查第三方 AI API 是否掺假以及渠道一致性**
+
+**可完全本地部署，保护 API Key 与测试数据**
 
 # 使用指南
 
-从releases下载最新的zip文件并完全解压所有文件， 使用python运行start.py。
+从[Releases](https://github.com//hanlinwenyuan/hlwy-ai-checker/releases)下载最新的ZIP文件并完全解压所有文件， 使用 Python 运行 start.py
 
 ## 自动模式
 ### 直接使用一键测试功能
@@ -12,18 +13,19 @@
 <img width="896" height="688" alt="image" src="https://github.com/user-attachments/assets/1dc60c3d-279b-4c99-bf9f-3e0da3b91a46" />
 
 ## 手动模式
-### 1.输入官key进行模型标定（带/v1）
+### 1.输入官方 API key 进行模型标定（Base URL 需包含 /v1）
 
 <img width="1354" height="852" alt="图片" src="https://github.com/user-attachments/assets/67ff8592-dcf3-407c-9e12-57991447d016" />
 
 ### 2.进行第三方渠道验证
+填写第三方渠道的 API Key 和 Base URL，并选择与标定阶段相同的模型，然后开始测试。
 
 ### 3.查看测试结果
-
+测试完成后，比较官方渠道与第三方渠道的指纹相似度及相关统计结果。
 
 # 特色&优点
 
-## 识别精确，区分度大
+## 识别精确，区分度高
 <img width="1463" height="599" alt="069a674bef0a8c3c0e1620c2573fc23d" src="https://github.com/user-attachments/assets/2081fd7c-040d-4512-aff3-755926d893e8" />
 
 <img width="1447" height="607" alt="图片" src="https://github.com/user-attachments/assets/0141405c-7d23-4cf0-bbe6-3e3b8a3e9fce" />
@@ -32,7 +34,7 @@
 
 <img width="1448" height="600" alt="0f64237c164f492dd0d677a97ba981f5" src="https://github.com/user-attachments/assets/07b00a61-ee17-4d39-bb32-8e367d0d03cd" />
 
-## token消耗少
+## Token消耗少
 
 <img width="1663" height="290" alt="图片" src="https://github.com/user-attachments/assets/64e1f1a3-0796-4477-a1c0-1f3b004fdf4d" />
 
@@ -48,7 +50,7 @@
 
 这些差异在大量采样后形成了统计学上可区分的指纹。
 
-这一指纹不能轻易被系统提示词覆盖，可以用来检测第三方API的真实性。
+这一指纹不能轻易被系统提示词覆盖，可以用来检测第三方 API 的真实性。
 
 # 免责声明
 
@@ -58,7 +60,7 @@
 
 本人仅作为开源代码维护者，不参与、不介入任何用户与 API 提供商之间的商业纠纷。
 
-本项目由hanlinwenyuan开发，在 [Linux Do](https://linux.do/) 上发布。
+本项目由 [hanlinwenyuan](https://github.com/hanlinwenyuan) 开发，在 [Linux Do](https://linux.do/) 上发布。
 
 ## Star History
 
