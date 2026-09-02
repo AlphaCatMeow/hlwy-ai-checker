@@ -1,5 +1,23 @@
 # hlwy-ai-checker
-检查第三方AI API是否掺假以及渠道一致
+## 检查第三方 AI API是否掺假以及渠道一致性
+
+# 使用指南
+
+从releases下载最新的zip文件并完全解压所有文件， 使用python运行start.py。
+
+## 0.可以直接使用一键测试功能了。
+
+<img width="896" height="688" alt="image" src="https://github.com/user-attachments/assets/1dc60c3d-279b-4c99-bf9f-3e0da3b91a46" />
+
+
+## 1.输入官key进行模型标定（带/v1）
+
+<img width="1354" height="852" alt="图片" src="https://github.com/user-attachments/assets/67ff8592-dcf3-407c-9e12-57991447d016" />
+
+## 2.进行第三方渠道验证
+
+## 3.查看测试结果
+
 
 # 特色&优点
 
@@ -20,44 +38,25 @@
 
 <img width="1513" height="713" alt="图片" src="https://github.com/user-attachments/assets/2d2670b1-72ba-4cd1-9b5e-e3bf6a0d13b7" />
 
-# 使用指南
 
-去releases下载最新稳定版的zip文件，解压， 然后找到start.py，用python打开。
-
-## 0.可以直接使用一键测试功能了。
-
-<img width="896" height="688" alt="image" src="https://github.com/user-attachments/assets/1dc60c3d-279b-4c99-bf9f-3e0da3b91a46" />
-
-
-## 1.输入官key进行模型标定（带/v1）
-
-<img width="1354" height="852" alt="图片" src="https://github.com/user-attachments/assets/67ff8592-dcf3-407c-9e12-57991447d016" />
-
-## 2.进行第三方渠道验证
-
-## 3.查看测试结果
 
 # 原理
 
 大语言模型并非真正的随机数生成器。当被要求"随机选数字"时，不同模型由于其训练数据、架构、RLHF对齐方式、tokenization策略等差异，会产生不同的偏差。
 
-这些差异在大量采样后就形成了统计学上可区分的指纹。
+这些差异在大量采样后形成了统计学上可区分的指纹。
 
-这一指纹不能轻易被系统提示词覆盖，所以可以用来检测第三方API是真的假的。
+这一指纹不能轻易被系统提示词覆盖，所以可以用来检测第三方API的真实性。
 
 # 免责声明
 
 测试结果仅供参考。
 
-由于大模型本身存在随机性及网络波动，本工具的测试结果不能作为任何商业纠纷、退款索赔的绝对法律/事实依据。
+由于大模型本身存在随机性，且网络波动有影响，本工具的测试结果不能作为任何商业纠纷、退款索赔的绝对法律/事实依据。
 
-本人仅作为开源代码维护者，不参与、不介入任何用户与 API 提供商之间的商业纠纷。请各方理性交流。
+本人仅作为开源代码维护者，不参与、不介入任何用户与 API 提供商之间的商业纠纷。
 
-本项目由hanlinwenyuan开发，在Linux Do上发布。
-
-# 友链
-
-[LINUX DO - 新的理想型社区](https://linux.do/)
+本项目由hanlinwenyuan开发，在 Linux Do(https://linux.do/) 上发布。
 
 ## Star History
 
