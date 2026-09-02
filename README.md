@@ -1,22 +1,24 @@
 # hlwy-ai-checker
-## 检查第三方 AI API是否掺假以及渠道一致性
+检查第三方 AI API是否掺假以及渠道一致性
+完全本地运行 助力隐私保护
 
 # 使用指南
 
 从releases下载最新的zip文件并完全解压所有文件， 使用python运行start.py。
 
-## 0.可以直接使用一键测试功能了。
+## 自动模式
+### 直接使用一键测试功能
 
 <img width="896" height="688" alt="image" src="https://github.com/user-attachments/assets/1dc60c3d-279b-4c99-bf9f-3e0da3b91a46" />
 
-
-## 1.输入官key进行模型标定（带/v1）
+## 手动模式
+### 1.输入官key进行模型标定（带/v1）
 
 <img width="1354" height="852" alt="图片" src="https://github.com/user-attachments/assets/67ff8592-dcf3-407c-9e12-57991447d016" />
 
-## 2.进行第三方渠道验证
+### 2.进行第三方渠道验证
 
-## 3.查看测试结果
+### 3.查看测试结果
 
 
 # 特色&优点
@@ -46,7 +48,7 @@
 
 这些差异在大量采样后形成了统计学上可区分的指纹。
 
-这一指纹不能轻易被系统提示词覆盖，所以可以用来检测第三方API的真实性。
+这一指纹不能轻易被系统提示词覆盖，可以用来检测第三方API的真实性。
 
 # 免责声明
 
@@ -56,7 +58,7 @@
 
 本人仅作为开源代码维护者，不参与、不介入任何用户与 API 提供商之间的商业纠纷。
 
-本项目由hanlinwenyuan开发，在 Linux Do(https://linux.do/) 上发布。
+本项目由hanlinwenyuan开发，在 [Linux Do](https://linux.do/) 上发布。
 
 ## Star History
 
