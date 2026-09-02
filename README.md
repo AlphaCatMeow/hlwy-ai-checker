@@ -74,3 +74,7 @@ python start.py
    <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=hanlinwenyuan/hlwy-ai-checker&type=date&legend=top-left" />
  </picture>
 </a>
+
+# 友链
+
+[LINUX DO - 新的理想型社区](https://linux.do/)
